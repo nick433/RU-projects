@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane hgap="10.0" prefHeight="420.0" prefWidth="680.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="f2c.view.F2CController">
+   <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="229.0" prefWidth="650.0">
+      <children>
+         <VBox fx:id="vboxlist" prefHeight="229.0" prefWidth="325.0">
+            <children>
+               <ListView fx:id="listView" onKeyPressed="#handleKeyPressed" onMouseClicked="#handleMouseClick" prefHeight="221.0" prefWidth="325.0">
+                  <VBox.margin>
+                     <Insets top="20.0" />
+                  </VBox.margin>
+               </ListView>
+            </children></VBox>
+         <VBox prefHeight="229.0" prefWidth="325.0">
+            <children>
+               <TextField fx:id="artist" onAction="#changeArtist" prefHeight="29.0" prefWidth="320.0" promptText="Artist">
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </TextField>
+               <TextField fx:id="album" onAction="#changeAlbum" prefHeight="30.0" prefWidth="320.0" promptText="Album">
+                  <VBox.margin>
+                     <Insets top="15.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </TextField>
+               <TextField fx:id="year" onAction="#changeYear" prefHeight="30.0" prefWidth="320.0" promptText="Year">
+                  <VBox.margin>
+                     <Insets top="15.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </TextField>
+               <TextField alignment="CENTER" disable="true" editable="false" text="To change a field, select and press &quot;enter&quot;.">
+                  <VBox.margin>
+                     <Insets top="35.0" />
+                  </VBox.margin>
+               </TextField>
+            </children>
+            <HBox.margin>
+               <Insets left="10.0" top="20.0" />
+            </HBox.margin>
+         </VBox>
+      </children>
+   </HBox>
+   <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="649.0" GridPane.rowIndex="8">
+      <children>
+         <Button fx:id="add" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addName" prefHeight="30.0" prefWidth="164.0" text="Add to library">
+            <font>
+               <Font name="Lucida Sans Unicode" size="13.0" />
+            </font>
+            <HBox.margin>
+               <Insets right="5.0" />
+            </HBox.margin>
+         </Button>
+      </children>
+      <padding>
+         <Insets bottom="5.0" />
+      </padding>
+   </HBox>
+   <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="662.0" GridPane.rowIndex="7">
+      <children>
+         <TextField id="newTitle" fx:id="newName" maxWidth="165.0" minHeight="-Infinity" minWidth="165.0" onAction="#addName" promptText="Song name">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+            <font>
+               <Font size="13.0" />
+            </font>
+         </TextField>
+         <TextField fx:id="newArtist" maxWidth="165.0" minHeight="-Infinity" minWidth="165.0" onAction="#addName" promptText="Artist">
+            <font>
+               <Font size="13.0" />
+            </font>
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+         </TextField>
+         <TextField fx:id="newAlbum" maxWidth="165.0" minHeight="-Infinity" minWidth="165.0" onAction="#addName" promptText="Album (optional)">
+            <font>
+               <Font size="13.0" />
+            </font>
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+         </TextField>
+         <TextField fx:id="newYear" maxWidth="165.0" minHeight="-Infinity" minWidth="165.0" onAction="#addName" promptText="Year (optional)">
+            <font>
+               <Font size="13.0" />
+            </font>
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+         </TextField>
+      </children>
+      <GridPane.margin>
+         <Insets />
+      </GridPane.margin>
+   </HBox>
+   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="                                                Add a song:" GridPane.rowIndex="6">
+      <font>
+         <Font name="Nyala" size="20.0" />
+      </font>
+   </Text>
+   <TextField id="title" fx:id="name" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#changeName" prefHeight="30.0" prefWidth="207.0" promptText="Selected Song" GridPane.rowIndex="2">
+      <GridPane.margin>
+         <Insets left="20.0" />
+      </GridPane.margin>
+   </TextField>
+   <Button fx:id="delete" mnemonicParsing="false" onAction="#delName" prefHeight="30.0" prefWidth="157.0" text="Delete" GridPane.columnIndex="4" GridPane.rowIndex="2">
+      <GridPane.margin>
+         <Insets left="10.0" />
+      </GridPane.margin>
+      <font>
+         <Font size="13.0" />
+      </font>
+   </Button>
+		
+            	<padding>
+		<Insets bottom="10" left="10" right="10" top="10" />
+	</padding>
+   <columnConstraints>
+      <ColumnConstraints maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+      <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+	
+            </GridPane>

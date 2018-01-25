@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+=======
+Name1,Artist1,Album1,Year1
+Name2,Artist2,Album2,Year2
+>>>>>>> branch 'master' of https://nick433@bitbucket.org/jdcarroll/slybrary.git
