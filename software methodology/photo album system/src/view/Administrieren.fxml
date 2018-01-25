@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="393.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdministrierenController">
+	<columnConstraints>
+		<ColumnConstraints hgrow="SOMETIMES" maxWidth="392.0" minWidth="10.0" prefWidth="329.0" />
+	</columnConstraints>
+	<rowConstraints>
+		<RowConstraints maxHeight="256.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+		<RowConstraints maxHeight="301.0" minHeight="10.0" prefHeight="292.0" vgrow="SOMETIMES" />
+		<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+	</rowConstraints>
+	<children>
+		<Button fx:id="createBtn" mnemonicParsing="false" onAction="#createNewUserAction" prefHeight="40.0" prefWidth="42.0" text="+" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+			<GridPane.margin>
+				<Insets left="25.0" top="25.0" />
+			</GridPane.margin>
+		</Button>
+		<Label text="[Admin]">
+			<font>
+				<Font size="30.0" />
+			</font>
+         <GridPane.margin>
+            <Insets left="25.0" />
+         </GridPane.margin>
+		</Label>
+		<Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#loggingOut" text="Logout">
+			<GridPane.margin>
+				<Insets left="300.0" />
+			</GridPane.margin>
+		</Button>
+		<Button fx:id="removeBtn" mnemonicParsing="false" onAction="#removeUserAction" prefHeight="40.0" prefWidth="41.0" text="-" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+			<GridPane.margin>
+				<Insets right="25.0" top="25.0" />
+			</GridPane.margin>
+		</Button>
+		<ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+	</children>
+</GridPane>

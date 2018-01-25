@@ -1,0 +1,7 @@
+Window      | Team member
+_____________________
+Login       | James
++/- User    | James
++/- Albums  | James  
++/- Photos  | Nick
+Search      | Nick

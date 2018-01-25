@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="712.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PhotoviewController">
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <HBox prefHeight="496.0" prefWidth="550.0">
+         <children>
+            <VBox minWidth="-Infinity" prefWidth="255.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Photo list" wrappingWidth="259.13671875">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+                  <ListView fx:id="listView" editable="true" maxHeight="-Infinity" minHeight="-Infinity" onMouseClicked="#handleMouseClick" prefHeight="215.0" prefWidth="255.0">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin></ListView>
+                  <ImageView fx:id="imgView" fitHeight="204.0" fitWidth="243.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets bottom="1.0" left="6.0" right="6.0" top="6.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <TextField fx:id="addcapText" onAction="#addCap" prefHeight="25.0" prefWidth="287.0" promptText="add a caption...">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></TextField>
+               </children>
+            </VBox>
+            <VBox minWidth="-Infinity" prefHeight="489.0" prefWidth="276.0">
+               <children>
+                  <Label fx:id="albumnameLabel" prefHeight="45.0" prefWidth="227.0" text="[Owner] ">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="60.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button fx:id="albumviewBtn" minHeight="-Infinity" mnemonicParsing="false" onAction="#backToAlbumView" prefHeight="35.0" prefWidth="174.0" text="Back to Abum View">
+                     <VBox.margin>
+                        <Insets bottom="30.0" left="60.0" top="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                    <buttons>
+                      <Button fx:id="addBtn" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addPhoto" prefHeight="36.0" prefWidth="143.0" text="add photo">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="moveBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#movePhoto" prefHeight="36.0" prefWidth="143.0" text="move photo">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                 <!--    <buttons.margin>
+                        <Insets left="100.0" top="10.0" />
+                           </buttons.margin> -->
+                    </buttons>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ButtonBar>
+                  <ButtonBar layoutX="10.0" layoutY="123.0" prefHeight="40.0" prefWidth="200.0">
+                     <buttons>
+                        <Button fx:id="delBtn" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deletePhoto" prefHeight="36.0" prefWidth="143.0" text="delete photo">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="renameBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#renamePhoto" prefHeight="36.0" prefWidth="143.0" text="rename">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                     </buttons>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ButtonBar>
+                  <ButtonBar layoutX="10.0" layoutY="163.0" prefHeight="40.0" prefWidth="200.0">
+                     <buttons>
+                        <Button fx:id="viewBtn" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#viewPhoto" prefHeight="36.0" prefWidth="143.0" text="view">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="copyBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#copyPhoto" prefHeight="36.0" prefWidth="143.0" text="copy">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                     </buttons>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ButtonBar>
+                  <ButtonBar layoutX="10.0" layoutY="239.0" prefHeight="40.0" prefWidth="200.0">
+                     <buttons>
+                        <Button fx:id="slideshowBtn" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playSlideshow" prefHeight="42.0" prefWidth="200.0" text="Slideshow">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                     </buttons>
+                     <VBox.margin>
+                        <Insets left="20.0" right="30.0" top="20.0" />
+                     </VBox.margin>
+                  </ButtonBar>
+                  <Label prefHeight="26.0" prefWidth="67.0" text="Add Tags:">
+                     <VBox.margin>
+                        <Insets left="110.0" top="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="addtagsField" minWidth="-Infinity" onAction="#addTags" prefHeight="36.0" prefWidth="257.0" promptText="example: (person=dom),(location=paris)">
+                     <VBox.margin>
+                        <Insets left="19.0" right="18.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="addtagsBtn" mnemonicParsing="false" onAction="#addTags" prefHeight="40.0" prefWidth="103.0" text="update">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="90.0" top="15.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="addcapBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addCap" prefHeight="29.0" prefWidth="52.0" text="add">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <VBox prefHeight="496.0" prefWidth="145.0" GridPane.columnIndex="2">
+         <children>
+            <ListView fx:id="listView1" editable="true" maxHeight="-Infinity" minHeight="-Infinity" onMouseClicked="#handleMouseClick" prefHeight="292.0" prefWidth="144.0" />
+            <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#search" prefHeight="46.0" prefWidth="144.0" text="Search">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <TextField fx:id="tagName" prefHeight="30.0" prefWidth="144.0" promptText="tag name" />
+            <TextField fx:id="tagValue" prefHeight="30.0" prefWidth="144.0" promptText="tag value" />
+            <TextField fx:id="nameAlbField" prefHeight="37.0" prefWidth="144.0" text="name_your_album">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Button fx:id="makeAlbBtn" mnemonicParsing="false" onAction="#makeAlb" prefHeight="46.0" prefWidth="145.0" text="Make Album">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</GridPane>
