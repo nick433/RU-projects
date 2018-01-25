@@ -1,0 +1,106 @@
+So, what is JSP exactly?
+To put it simply, JSP is a hodgepodge between HTML and Java-style coding. To give an example, 
+
+
+<% %>
+The space in between these bracket-like tags is like the "Java-Zone", or where you would put coding in the format of Java.
+Let's say I have a variable called myName, the contents of which was a name that might be changed. How would I put this in HTML?
+
+Like this; Use a text tag, like <h1></h1> ( I  always use header tags because I'm a lazy prick), with <% %> brackets INSIDE of those tags, like this:
+
+
+<h1> Hello, <% myName %>! </h1>
+
+
+-- session
+
+JSP has some implicit variables floating around that we take advantage of. One of them is called 'session'. 
+session is the variable that basically corresponds to the user actually working. It allows us to extract the unique values of our user, to give them appropriate displays.
+session is like an open-ended data structure; we can just keep throwing attributes on there, it doesn't give a damn. 
+
+Let's say I wanted to set the current user's username (which is stored in a variable literally called 'username') to their session. I'd do it like this;
+	session.setAttribute("username", username)
+The variable in quotation marks is the name of the attribute stored in session; if we decided to instead store the username in
+	session.setAttribute("userid", username)
+Then we'd have to adjust our reading of the attribute accordingly. Speaking of which; how would I go about reading the username? 
+
+Let's stick to the userid attribute name; if I wanted to call the username of the current user in another page (after setting it in an earlier page), I'd do it like this;
+	session.getAttribute("userid")
+	
+It's important to note that this function gives us an attribute, NOT a string. If we want to do something like assign this name to a String variable, we have make use of the .toString() function. 
+
+	Now, how do we emulate a logout? None of us should worry about that because it only comes up in the logout page I've already done for us, but it's done like this;
+	session.("userid", null);
+	session.invalidate();
+	
+In truth, we probably only have to do the second line of invalidating. But, I don't know what differense session invalidation makes alone, so I usually null the user (the first session-initialized variable).
+
+
+
+---	SQL: Half the fun.
+
+Half of this project is doing SQL table work. Pretty much all of your variables have something to do with a SQL table, so you should be comfortable with freely creating tables, extracting info, updating info, and rarely, deleting info. 
+Let's go over some Java-SQL integration.
+
+-- Initializating
+When you're building a page, the first thing you should do is make sure you have the following;
+1. Import tags. 
+If you don't have all the right imports, the page is going to spit out errors like a mad debugger. Make sure you have the following at the top of every page;
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+
+Even if you don't think the page will make use of the SQL database, put it in anyway to save yourself the headache. 
+
+2. Initialize url, driver, and connection.
+
+String url = "jdbc:mysql://cs336project.cwohuureg197.us-west-2.rds.amazonaws.com:3306/cs336database";
+		//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
+		Class.forName("com.mysql.jdbc.Driver");
+
+		//Create a connection to your DB
+		Connection con = DriverManager.getConnection(url, "master", "password");
+
+What's this, what's this? The string variable is the url to the database I created for the project. 
+The Class.forName thing is the driver initialization: THIS IS IMPORTANT TOO FOR ALL OF SQL-JAVA THINGS. 
+The Connection con thing is the variable type that basicaly dictates our connection to the SQL database for all the queries.
+		//Get the info
+		Statement stmt = con.createStatement();
+		
+This creates a generalized Statement variable, which uses our Connection variable to allow us to create SQL statements in JSP. 
+We'll see an example of this in action later. 
+
+		con.close();
+
+This is apparently important. When your page is done querying the SQL table, updating the SQL table, or doing whatever with the SQL table, make sure to have the page close the connection before moving on with whatever else. 
+
+I've never ran into anything like a segmentation fault or something to that extent for this, but juuuuuuuuuuust in case. 
+
+
+--- Building a Whole Row of a Table
+One of our project's tables is a table called 'members', and we want to populate that. How do we go about doing that? Like this;
+1. Set up a string that's basically what the SQL statement you'd write in would be, typically of this format: 
+
+String insert = "INSERT INTO members(firstname, lastname, email, RUID, username, pwd)" + "VALUES (?, ?, ?, ?, ?, ?)"
+
+2. Create a PreparedStatement
+
+PreparedStatement ps = con.prepareStatement(insert);
+
+PreparedStatement is slightly different from a statement. Do you see how that SQL statement has a bunch of ?'s followed after the VALUES? The ?'s constitutes inputs parallel to the members(firstname, ...) layout. 
+	Here's the annoying part, we have to insert our values like so;
+	
+		ps.setString(1, firstname);
+	    ps.setString(2, lastname);
+	    ps.setString(3, email);
+	    ps.setString(4, RUID);
+	    ps.setString(5, username);
+	    ps.setString(6, pwd);
+		
+Right, so the format for modifying a PreparedStatement is <PreparedStatement Name>.set<VariableType>(<? placement>, <value>)
+	<PreparedStatement Name> is self explanatory; it's the thing we just initialized. 
+	<VariableType>; we can set Ints, Strings, and other variables, just pay attention to the table column variable types. 
+	
+
+--- Maintaining user information throughout page
+
+	    
