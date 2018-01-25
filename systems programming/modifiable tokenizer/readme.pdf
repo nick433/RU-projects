@@ -1,0 +1,67 @@
+Project 1: String Tokenizer
+Nick Mangracina(nsm83) and Eddie Lazar(ekl31)
+
+We have four field variables that all functions can access. This helps to maintain consistency between jobs that each function has to do, and where to store each token value.
+
+makeToken, given a tokenizer and the input token stream, uses the field variables to assign token values to their slots in the tokenizer's fields. But first, it has to detemine what the token's strings and types are. We used a system of if/else blocks to accomplish this, emulating the finite state machine to the best of our ability.
+
+TYPES OF TOKENS:
+(when a character that cannot be in a certain token is reached, that token ends and a new one begins).
+
+WORDS
+word: only alphabetical characters, uppercase or lowercase. No numbers, no symbols. 
+
+NUMBERS
+zero: the character '0', if followed by a letter that isn't x or X, or a symbol: that is, not the beginning of an octal constant or hex constant.
+integer constant: Just digits, defined by isdigit. It must NOT start with 0.
+octal constant: Just digits between 0 and 7. it MUST start with 0.
+hex constant: must start with 0, followed by x or X, and then any digits or the letters a through f, uppercase or lowercase. If the x is followed by anything else, including a null pointer, its malformed.
+float: a floating point number is any number with a decomal component, or any number with a scientific notation component at the end, or a number with both. If at any point a number has something that isn't a decimal point, the letter e or E, or digits, it's malformed. It's also malformed if the . is followed by something that isn;t a digit, if the e or E,  is followed by something that isn't a +, -, or digit, or if the + or - is followed by anything that isn't a digit.
+
+SYMBOLS
+left brace: just '['
+right brace: just ']'
+left parenthesis: '('
+right parenthesis: ')'
+decimal point: '.'
+ignore left statement operator: ','
+asterisk: '*'
+slash: '/'
+divide equals: '/='
+plus: '+'
+plus equals: '+='
+minus: '-'
+minus equals: '-="
+decimal point: '.'
+multiply equals: '*='
+modulus: '%'
+modulus equals: '%='
+ternary: '?'
+address/bitwise AND: '&'
+logical AND: '&&'
+Ones Complement: '~'
+bitwise exclusive OR: '^'
+bitwise OR: '|'
+logical OR: '||'
+greater than: '>'
+greater than or equal to: '>='
+less than: '<'
+less than or equal to: '<='
+equal to: '=='
+assignment: '='
+and equals: '&='
+bitwise exclusive or equals: '^='
+bitwise or equals: '|='
+sizeof: "sizeof"
+
+
+TKCreate accepts the token stream, copies it into a new char pointer, and allocates space for a tokenizer and its fields: two pointers to char arrays.
+Then, it calls our helper method to extract tokens and identify them. Finally, it stores the resulting values of each token's text and type into their respective arrays and returns the whole token object, to be printed out sequentially in main. Each index in the two arrays accounts for a token.
+
+TKGetNextToken uses a field variable for keeping track of which token it's currently supposed to get, and a char* to store that token's values. It concatenates the values into the char* variable and then returns that. It gets freed up at the end of main.
+
+TKDestroy simply frees up all the space that the tokenizer holds, since it's all in one convenient address.
+
+Main only calls the TKCreate function and then uses the TKGetNextToken function to print each token. No logic is performed in main, only variable creation and function calls, except for making sure that the right number of arguments were given.
+
+We also implemented all if the extra credit. Token sequences surrounded by quotation marks are treated as one string token. Comments are ignored. Finally, we included a list of several keywords to be treated as such when found to be word tokens.

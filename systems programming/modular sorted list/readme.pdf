@@ -1,0 +1,44 @@
+Eddie Lazar(ekl31) and Nick Mangracina(nsm83)
+Analysis of Runtime and Memory Usage of Sorted List Functions
+
+For all integer-return-value functions, returning 0 means that the fucntion completed successfully, and 1 means an error occurred.
+
+SLCreate:
+This function, given two pointers to functions, creates a SortedList struct using them. It checks them for nullity, allocates memory for the SortedList and its fields, and then initializes them. There are no loops or recursive calls.
+Runtime: O(1), constant time
+Memory: Since it allocates space for the struct, sizeof(SortedList) is how much space it takes up.
+
+SLDestroy:
+Given a pointer to a SortedList struct, it checks for nullity, frees up all the Nodes, and then frees up the list memory. There is one loop over the whole input list.
+Runtime: O(n), linear time over the list.
+Memory: no new memory is allocated.
+
+SLInsert:
+Takes a list of data and some data to insert, finds the right place to put it, and puts it there. After checking for null input, creates a Node and passes it the data as its data field. Increments the number of pointers to the Node and then checks if the head Node is NULL. If so, or if the new data is larger than the head's data, we make the newly created Node the head. Else, we have to iterate through the list and find a Node that's smaller than the new Node, and insert it before that one. If no such Node is ever found, we put the Node at the end of the list.
+Runtime: O(n), we iterate over the list once, with a few constant operations at the beginning.
+Memory: This function allocates memory for the Node containing the input data, and a few ints that get deleted at the end. sizeof(struct Node).
+
+SLRemove:
+After checking for bad input, this function then looks for the Node that matches the data given in the input. There is a separate case if the data was found in the head Node. If it isn't, the list is looped through, and each Node's data is compared to the input. If found, that Node is removed from the list, and deallocated if its number of pointers drops to 0. 
+Runtime: O(n), it has to loop through the whole list and it may never find the Node it's looking for.
+Memory Usage: No new memory is allocated, and all variables disappear at the end.
+
+SLCreateIterator:
+True to its name, this function creates an iterator and points it to the head of a list, given the pointer to the list and making sure that said pointer is not NULL. The iterator struct is allocated, and its fields are initialized. The struct pointer is then returned.
+Runtime: O(1).
+Memory Usage: A new SortedListIterator struct is created, so sizeof(SortedListIterator) is taken up by this function.
+
+SLDestroyIterator:
+Given an iterator pointer, all we do here is destroy it. Check for bad input, and then for the Node being currently looked at, decrement the pointer count of the Node, then free the Node if its pointer count is now zero. Finally, the iterator itself is freed.
+Runtime: O(n), since it has to go through the list and check the number of pointers at each Node.
+Memory Usage: No new memory is allocated.
+
+SLGetItem:
+This function simply takes an iterator pointer and returns a pointer to the data of the Node that the iterator is pointing to. Two if statements, for bad input, and a return.
+Runtime: O(1)
+Memory Usage: None
+
+SLNextItem:
+Given a pointer to an iterator which points to a Node in the list, we want to make the iterator point to the following Node in the list and return the data from that Node. After checking for NULL input, we make sure the iterator isn't pointing to the last item in the list (if it is, we just check if the number of pointers is 0, and free up the Node if it is, before returning NULL). Then, a temporary Node is created that is a copy of the current Node. the current Node goes to the next one, and we check if the temporary Node's pointers are now 0. If so, it gets deallocated. Then, we return the new current Node's data.
+Runtime: Despite all that happens, there is not iterating or recursion in this method. It's only O(1).
+Memory Usage: No new memory is allocated.

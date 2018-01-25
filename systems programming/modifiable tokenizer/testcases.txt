@@ -1,0 +1,162 @@
+Eddie Lazar(ekl31) and Nick Mangracina(nsm83)
+Testcases
+
+Input
+./T "hi" "hello"
+Expected Output
+Too many arguments!
+Actual Output
+Too many arguments!
+
+Input
+./T
+Expected Output
+No arguments!
+Actual Output
+No arguments!
+
+Input
+./T "0x122"
+Expected Output
+hex constant "0x122"
+Actual Output
+hex constant "0x122"
+
+Input
+./T "0X122"
+Expected Output
+hex constant "0X122"
+Actual Output
+hex constant "0X122"
+
+Input
+./T "0123 342 3.2 0.1"
+Expected Output
+octal constant "0123"
+integer "342"
+float "3.2"
+float "0.1"
+Actual Output
+octal constant "0123"
+integer "342"
+float "3.2"
+float "0.1"
+
+Input
+./T "0.2e12 0.2E12 0.2e-12 0.2E-12 0.2e+12 0.2E+12"
+Expected Output
+float "0.2e12"
+float "0.2E12"
+float "0.2e-12"
+float "0.2E-12"
+float "0.2e+12"
+float "0.2E+12"
+Actual Output
+float "0.2e12"
+float "0.2E12"
+float "0.2e-12"
+float "0.2E-12"
+float "0.2e+12"
+float "0.2E+12"
+
+
+Input
+./T "1.2e12 1.2E12 1.2e-12 1.2E-12 1.2e+12 1.2E+12"
+Expected Output
+float "1.2e12"
+float "1.2E12"
+float "1.2e-12"
+float "1.2E-12"
+float "1.2e+12"
+float "1.2E+12"
+Actual Output
+float "1.2e12"
+float "1.2E12"
+float "1.2e-12"
+float "1.2E-12"
+float "1.2e+12"
+float "1.2E+12"
+
+Input
+./T "0xh 0Xh 0.e 1.e 0.2eq 0.2e-q 0.2e+q 0.2Eq 0.2E-q 0.2E+q"
+Expected Output
+malformed "0xh"
+malformed "0Xh"
+malformed "0.e"
+malformed "1.e"
+malformed input "0.2eq"
+malformed input "0.2e-"
+malformed input "0.2e+"
+malformed input "0.2Eq"
+malformed input "0.2E-q"
+malformed input "0.2E+"
+Actual Output
+malformed "0xh"
+malformed "0Xh"
+malformed "0.e"
+malformed "1.e"
+malformed input "0.2eq"
+malformed input "0.2e-"
+malformed input "0.2e+"
+malformed input "0.2Eq"
+malformed input "0.2E-q"
+malformed input "0.2E+"
+
+Input
+./T "hello1234 012389"
+Expected Output
+word "hello"
+integer "1234"
+oct constant "0123"
+integer "89"
+
+Actual Output
+word "hello"
+integer "1234"
+oct constant "0123"
+integer "89"
+
+Input
+./T "oyster meat /*is bad*/ is good"
+Expected Output
+word "oyster"
+word "meat"
+word "is"
+word "good"
+Actual Output
+word "oyster"
+word "meat"
+word "is"
+word "good"
+
+"ayy lmao 49039pizza"
+word "ayy"
+word "lmao"
+integer "49039"
+word "pizza"
+
+"assf [ hello [sdsd [ds pizzahut[ ["
+
+word "assf"
+left brace "["
+word "hello"
+left brace "["
+word "sdsd"
+left brace "["
+word "ds"
+word "pizzahut"
+left brace "["
+left brace "["
+
+"hi /* hello world \"ss4*/\" 4343+= + ++ 0'93'3.32e4"
+word "hi"
+comment " hello world "ss4"
+double quote """
+integer "4343"
+plusequals "+="
+plus sign "+"
+plus sign "+"
+plus sign "+"
+zero "0"
+string token "93"
+float "3.32e4"

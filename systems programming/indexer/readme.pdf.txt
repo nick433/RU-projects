@@ -1,0 +1,16 @@
+Programming Assignment 4 Readme
+Eddie Lazar(ekl31) and Nick Mangracina(nsm83)
+
+Our program creates the inverted index in a very formulaic, modular way. At each step, the program is always working with a small subset of the data, while keeping references to dynamically allocated memory or global variables in the background. 
+
+First off, after checking to make sure that the input is correct, main jumps into a fucntion to navigate the given directory. This function is a recursive tree transversal function, letting the leaf nodes of the tree be the text files we're looking for. The base case of the function is that the given input is a text file; in that case, we call the function to tokenize and index a text file, and return. If it's not a text file, we iterate through the items in the directory, and call this directory function on each item. This function will run linearly in the number of items in the tree, leaf nodes or otherwise.
+
+At each leaf node/text file, the function file tokenizer is called that iterates through the text of the file and finds all tokens. The tokens are extracted letter by letter and sent to the tokenize function. This function runs linearly with the number of characters in the given text file.
+
+For each token in every file, the tokenize function is called, which checks if the token is already in the global hash table struct. If so, it updates the file list and frequency of the token. If not, it constructs the token and allocates dynamic memory for it, before sending a reference to it into the hash table. Since hash tables have constant lookup time, but we still have to search the file list for the token, this runs linearly worst case with the number of files in the given directory. An inner function, designed to update the hash table, is a constant time procedure.
+
+Finally, we extract all tokens from the table iteratively, O(n) time on the number of tokens created, and put them into an array. Now, we call heapsort on that array, an O(nlogn) time function, so that all of the tokens are sorted alphabetically. All that's left to do is iterate through the newly sorted array and write them to the output file. As each one is called, a helper function sorts the inner files first by frequency, and then by name alphabetically, and writes them to the file too. Everything written to the file is carefully formatted JSON.
+
+All in all, the program iterates through every file in the directory and subdirectories, every char in each file, and then runs O(mn + nlogn) procedures to update the hash table and sort its tokens, where m is the number of text files, and n is the number of tokens. This is better than the O(n^2) runtime that using a sorted list would've incurred. 
+
+Space complexity: all tokens are dynamically allocated. All files are dynammically allocated. The hash table stores a reference to the tokens, which store references to other tokens, and files, which store references to other files. We also create an array of tokens to write to the file easily at the end. The program ends up using O(m * n) space, where m is the number of files, and n is the number of tokens. Different tokens might store pointers to different allocated memory chunks representing the same file, so a file could be stored theoretically n times. Everything is free'd at the end.

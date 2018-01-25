@@ -1,0 +1,45 @@
+Eddie Lazar(ekl31) and Nick Mangracina(nsm83)
+Test Plan
+
+The SortedList we manipulate is made of Nodes, structs that contain a pointer to another Node. We use iterators to look through the list and examine each Node. If a Node is removed while the iterator is still looking at the list, the Node will not be removed and it will still be visible. Iterating will lead the iterator back into the list.
+
+To test our code, we created many pointers to different kids of data. ints, doubles, chars, and strings (as char arrays). Then, we created a SortedList for each, and tested inserting and removing these pointers. We also created iterators to look at the lists and test every possible way that the iterators coult interact with the List manipulation methods.
+
+We feed these numbers in this order [54,-54,0,-3,666,12,-3]
+and our list sorts it: 
+
+666 15 12 0 0 -3 -54
+
+removing head(666), end(-54), and middle(0):
+
+15 12 0 -3
+
+Adding 3 more ints:
+
+15 12 3 2 1 0 -3
+
+From here, we remove 2 and add 1994 and 104.
+
+1994 104 15 12 3 1 0 -3 -4
+
+Now we remove -4.
+
+1994 104 15 12 3 1 0 -3
+
+We free up the list and now add doubles: 
+
+4.000000 3.140000 0.100000 0.000000 0.000000 0.000001 -0.100000
+
+We give a new list some chars:
+
+z r f f a
+
+Then delete one of the fs:
+
+z r f a
+
+Adding a string:
+
+z r hello world f a
+
+done

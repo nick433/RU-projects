@@ -1,0 +1,24 @@
+Programming Assignment 4 Test Cases
+Eddie Lazar(ekl31) and Nick Mangracina(nsm83)
+
+We created a directory called a that has several files and subdirectories nested inside it. To test our code, we tried calling it on 
+a itself, as well as a text file inside it, and the subdirectories. We also checked for edge cases like no argument, invalid input, output file already existing, and empty directories.
+
+Case 1: normal directory
+The program iterates through normally. Since the files in a directory are not necessarily in alphabetical order, we tried rearranging them in different ways to make sure it always works correctly.
+The recursive structure means that some subdirectories will be indexed before text files in the same scope. The navigation algorithm works like depth-first search.
+
+Case 2: A file (we used a/c/test1.txt)
+The directory navigation function is designed to handle non-directory input immediately. The base case is hit and it goes right to tokenizing. In the inverted index output, each token's list of files is always 1 file long. As expected.
+
+Case 3: No arguments
+If the argument list is ever a length other than exactly 3, the program will let the user know, and exit(0) immediately.
+
+Case 4: invalid input
+The directory navigation function is called from main, where the contingency plan for not having a directory/file is checked. If the input is not a directory, it assumes it's a file and tries to open it with fileTokenizer function, which will return bad input if the file doesn't exist. The directory navigation function immediately informs the user and exits.
+
+Case 5: Output file already exists
+Before the directory navigator function is called, main() checks for this. If the output is already there, it asks the user if they want o overwrite it, and takes input from stdin as a char*, where th user can enter yes "y" or no "n". If yes, the program runs normally, as overwring is what happens by default. If the user said no, the program exits immediately.
+
+Case 6: Empty directory
+The hash table is created, but nothing is inserted. The array is created, but it is size 0. Nothing is written to the output file except the JSON header {"list" :[]}. This is logical, since there were no tokens but the index should still exist.
